@@ -3,7 +3,6 @@ FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y openssh-server
 RUN apt-get install -y nginx
 RUN service nginx start
-RUN service nginx enable
 RUN mkdir /var/run/sshd
 RUN echo 'root:pass1234' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
