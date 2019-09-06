@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y openssh-server
-RUN apt-get install -y nginx
+RUN apt-get install -y nginx && service nginx start
 RUN mkdir /var/run/sshd
 RUN echo 'root:pass1234' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -13,6 +13,5 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 
-EXPOSE 22 80 81
-# RUN service nginx start
+EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
