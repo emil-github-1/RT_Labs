@@ -14,5 +14,5 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 
 EXPOSE 22 80 81
-RUN service nginx start
+# RUN service nginx start
 CMD ["/usr/sbin/sshd", "-D"]
