@@ -12,7 +12,7 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 RUN echo "#!/bin/bash\n" \
-    "html=\"/var/www/html/index.nginx-debian.html\"\n" > remote.sh
+    "html=\"/var/www/html/index.nginx-debian.html\"\n" > /root/remote.sh
 
 RUN chmod +x remote.sh
 
