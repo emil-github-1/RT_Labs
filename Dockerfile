@@ -18,6 +18,8 @@ RUN echo "#!/bin/bash\n" \
     "cat /proc/cpuinfo | grep \"cpu cores\" >> \$html\n" \
     "echo \"<font><h1><font color=\"blue\">Memory Usage<font></h1><font color=\"black\">\" >> \$html\n" \
     "echo \"RAM `free -m | awk '/Mem:/ { printf("%3.1f%%", $3/$2*100) }'`\" >> \$html\n" \
+    "echo \"<font><h1><font color=\"blue\">Disk Usage<font></h1><font color=\"black\">\" >> \$html\n" \
+    "echo \"HDD `df -h / | awk '/\// {print $(NF-1)}'`\" >> \$html\n" \
     "echo \"<font></body></html>\" >> \$html\n" > /root/remote.sh
 
 RUN chmod +x /root/remote.sh
