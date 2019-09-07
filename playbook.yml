@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  become: yes
+  remote_user: root
+  tasks:
+   - name: Build the image
+     command: docker build -t eg_sshd github.com/emil-github-1/RT_Labs
+
+   - name: Create the container
+     docker_container:
+       name: cont1
+       image: eg_sshd
+       state: started
+       exposed_ports:
+               - 80
+       ports:
+               - "80:80"
+
+   - name: Install Nginx
+     command: docker exec cont1 apt-get install -y nginx
+
+   - name: Start Nginx service
+     command: docker exec cont1 service nginx start
+
+   - name: Execute remote bash script
+     command: docker exec -w /root cont1 bash remote.sh
