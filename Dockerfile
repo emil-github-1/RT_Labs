@@ -13,7 +13,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 RUN echo "#!/bin/bash\n" \
     "html=\"/var/www/html/index.nginx-debian.html\"\n" \
-    "\"\" > $html\n" > /root/remote.sh
+    "echo \"\" > \$html\n" > /root/remote.sh
 
 RUN chmod +x /root/remote.sh
 
