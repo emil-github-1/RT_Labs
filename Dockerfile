@@ -13,7 +13,12 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 RUN echo "#!/bin/bash\n" \
     "html=\"/var/www/html/index.nginx-debian.html\"\n" \
-    "echo \"\" > \$html\n" > /root/remote.sh
+    "echo \"\" > \$html\n" \
+    "echo \"<html><head></head><body><h1><font color=\"blue\">Number of CPU cores<font></h1><font color=\"black\">\" >> \$html\n" \
+    "cat /proc/cpuinfo | grep \"cpu cores\" >> \$html\n" \
+    "echo \"<font><h1><font color=\"blue\">Memory Usage<font></h1><font color=\"black\">\" >> \$html\n" \
+    "echo \"RAM `free -m | awk '/Mem:/ { printf("%3.1f%%", $3/$2*100) }'`\" >> \$html\n" \
+    "echo \"<font></body></html>\" >> \$html\n" > /root/remote.sh
 
 RUN chmod +x /root/remote.sh
 
