@@ -14,7 +14,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN echo "#!/bin/bash\n" \
     "html=\"/var/www/html/index.nginx-debian.html\"\n" > /root/remote.sh
 
-RUN chmod +x remote.sh
+RUN chmod +x /root/remote.sh
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
